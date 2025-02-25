@@ -114,7 +114,7 @@ function App() {
             }
 
             return (
-              <div key={key} role={"button"} onClick={() => window.location.href = value.url} data-toggle="tooltip" data-placement="top" title="Aller sur la page d'achat du jeu" className={"d-flex flex-column align-content-center justify-content-end w-75"}>
+              <div key={key} role={"button"} onClick={() => window.open(value.url, '_blank')} data-toggle="tooltip" data-placement="top" title="Aller sur la page d'achat du jeu" className={"d-flex flex-column align-content-center justify-content-end w-75"}>
                 <Confetti width={width} height={height} recycle={false} numberOfPieces={1000}/>
                 <div className={"animation-link d-flex flex-column align-content-center"}>
                   {index === 1 && <Lottie style={{height: '150px'}} options={{ loop: false, autoplay: true, animationData: trophy }} />}

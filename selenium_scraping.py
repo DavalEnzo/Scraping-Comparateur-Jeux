@@ -19,12 +19,12 @@ def scrape_g2a(input_name, results):
     try:
         driver.get(f'https://www.g2a.com/fr/search?query={input_name}')
         WebDriverWait(driver, 2).until(
-            EC.presence_of_element_located((By.XPATH, "//*/ul[@class='sc-hzUIXc indexes__StyledListMobile-wklrsw-108 jSTRnN bOAxJc']/li"))
+            EC.presence_of_element_located((By.XPATH, "//*/ul[@class='indexes__StyledList-wklrsw-146 jogMQS']/li"))
         )
-        game_name = driver.find_element(By.XPATH, "//*/ul[@class='sc-hzUIXc indexes__StyledListMobile-wklrsw-108 jSTRnN bOAxJc']").find_element(
-            By.TAG_NAME, 'li').get_attribute('name')
-        price = driver.find_element(By.XPATH, "//*/span[@data-locator='zth-price']").text.replace('€ ', '').replace(',', '.')
-        url = driver.find_element(By.XPATH, "//*/h3[@class='sc-crzoAE sc-bqGGPW inDMqh ifeSiB sc-csTbgd icrCIn']/a").get_attribute('href')
+        game_name = driver.find_element(By.XPATH, "//*/ul[@class='indexes__StyledList-wklrsw-146 jogMQS']//a").find_element(
+            By.TAG_NAME, 'h3').text
+        price = driver.find_element(By.XPATH, "//*/p[@class='text-[#172530] font-semibold text-h6']").text.replace('EUR', '')
+        url = driver.find_element(By.XPATH, "//*/ul[@class='indexes__StyledList-wklrsw-146 jogMQS']//a").get_attribute('href')
         results['g2a'] = {"name": game_name, "price": float(price), "url": url}
     except Exception as e:
         results['g2a'] = {"name": None, "price": 0, "url": None}
